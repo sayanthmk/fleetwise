@@ -1,4 +1,5 @@
 import 'package:fleetwise/constants/colors.dart';
+import 'package:fleetwise/widgets/bottom_navbar.dart';
 import 'package:fleetwise/widgets/custom_textform.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,6 @@ class IdentityVerificationScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Header with Skip button
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Row(
@@ -68,7 +68,7 @@ class IdentityVerificationScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
+                    const Row(
                       children: [
                         Text('hello'),
                         Text(
@@ -80,12 +80,28 @@ class IdentityVerificationScreen extends StatelessWidget {
                     CustomTextFormField(
                       controller: namecontroller,
                       labelText: '',
-                      suffixIcon: Icon(Icons.cabin),
+                      suffixIcon: const Icon(Icons.cabin),
                       fill: true,
                       fillcolor: FleetWiseColors.fillwhite,
                     ),
                   ],
                 ),
+              ),
+
+              const SizedBox(height: 20),
+              CustomTextFormField(
+                controller: namecontroller,
+                labelText: '',
+                fill: true,
+                fillcolor: FleetWiseColors.fillwhite,
+              ),
+
+              const SizedBox(height: 20),
+              CustomTextFormField(
+                controller: namecontroller,
+                labelText: '',
+                fill: true,
+                fillcolor: FleetWiseColors.fillwhite,
               ),
 
               const SizedBox(height: 40),
@@ -98,7 +114,9 @@ class IdentityVerificationScreen extends StatelessWidget {
                   height: 55,
                   child: ElevatedButton(
                     onPressed: () {
-                      // Handle submit
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => BottomNavControl(),
+                      ));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF123456),

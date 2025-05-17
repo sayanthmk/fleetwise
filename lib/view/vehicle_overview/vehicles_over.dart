@@ -1,164 +1,138 @@
 import 'package:flutter/material.dart';
 
-// class FleetManagementApp extends StatelessWidget {
-//   const FleetManagementApp({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Fleet Management',
-//       theme: ThemeData(
-//         primarySwatch: Colors.blue,
-//         scaffoldBackgroundColor: Colors.grey[50],
-//       ),
-//       home: const VehiclesOverviewScreen(),
-//       debugShowCheckedModeBanner: false,
-//     );
-//   }
-// }
-
 class VehiclesOverviewScreen extends StatelessWidget {
-  const VehiclesOverviewScreen({Key? key}) : super(key: key);
+  const VehiclesOverviewScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+    return ListView(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+      children: [
+        const Row(
           children: [
-            // Header Section
-            Row(
-              children: [
-                Icon(
-                  Icons.local_shipping,
-                  color: const Color(0xFF0A2748),
-                  size: 28,
-                ),
-                const SizedBox(width: 10),
-                Text(
-                  'Vehicles Overview',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: const Color(0xFF0A2748),
-                  ),
-                ),
-              ],
+            Icon(
+              Icons.local_shipping,
+              color: Color(0xFF0A2748),
+              size: 28,
             ),
-            const SizedBox(height: 20),
-
-            // Filter Tabs
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  _buildFilterTab('All (26)', true),
-                  const SizedBox(width: 10),
-                  _buildFilterTab('Running (02)', false),
-                  const SizedBox(width: 10),
-                  _buildFilterTab('Idle (01)', false),
-                  const SizedBox(width: 10),
-                  _buildFilterTab('Inactive (05)', false),
-                ],
+            SizedBox(width: 10),
+            Text(
+              'Vehicles Overview',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF0A2748),
               ),
-            ),
-            const SizedBox(height: 30),
-
-            // Vehicle Card 1 - IDLE
-            _buildVehicleCard(
-              vehicleNumber: 'UP 12 AK 3532',
-              driverName: 'Akash Sharma',
-              status: 'IDLE',
-              statusColor: Colors.blue[100]!,
-              statusTextColor: Colors.blue[800]!,
-              profit: '₹74,304',
-              profitColor: Colors.green,
-              cost: '₹3,83,380',
-              earnings: '₹4,57,684',
-              earningsProgress: 1.0,
-              earningsColor: Colors.teal,
-            ),
-
-            // SOS Alert Card
-            Container(
-              margin: const EdgeInsets.only(top: 15, bottom: 15),
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-              decoration: BoxDecoration(
-                color: const Color(0xFFFFFAE5),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.notifications_active,
-                        color: Colors.red[400],
-                        size: 24,
-                      ),
-                      const SizedBox(width: 12),
-                      RichText(
-                        text: TextSpan(
-                          style: const TextStyle(
-                            fontSize: 15,
-                            color: Colors.grey,
-                          ),
-                          children: [
-                            const TextSpan(
-                              text: 'SOS call made at ',
-                            ),
-                            TextSpan(
-                              text: '12:53 AM',
-                              style: TextStyle(
-                                color: Colors.red[400],
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const TextSpan(
-                              text: ' by driver',
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  const Icon(
-                    Icons.arrow_forward,
-                    color: Colors.black54,
-                  ),
-                ],
-              ),
-            ),
-
-            // Vehicle Card 2 - RUNNING
-            _buildVehicleCard(
-              vehicleNumber: 'UP 12 AK 3248',
-              driverName: 'Akash Sharma',
-              status: 'RUNNING',
-              statusColor: Colors.green[100]!,
-              statusTextColor: Colors.green[800]!,
-              profit: '₹74,304',
-              profitColor: Colors.red,
-              cost: '₹3,83,380',
-              earnings: '₹4,57,684',
-              earningsProgress: 0.3,
-              earningsColor: Colors.red[400]!,
-            ),
-
-            // Vehicle Card 3 - INACTIVE
-            _buildInactiveVehicleCard(
-              vehicleNumber: 'UP 12 AK 3248',
-              message: 'No Driver Assigned',
             ),
           ],
         ),
-      ),
+        const SizedBox(height: 20),
+
+        // Filter Tabs
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              buildFilterTab('All (26)', true),
+              const SizedBox(width: 10),
+              buildFilterTab('Running (02)', false),
+              const SizedBox(width: 10),
+              buildFilterTab('Idle (01)', false),
+              const SizedBox(width: 10),
+              buildFilterTab('Inactive (05)', false),
+            ],
+          ),
+        ),
+        const SizedBox(height: 30),
+
+        buildVehicleCard(
+          vehicleNumber: 'UP 12 AK 3532',
+          driverName: 'Akash Sharma',
+          status: 'IDLE',
+          statusColor: Colors.blue[100]!,
+          statusTextColor: Colors.blue[800]!,
+          profit: '₹74,304',
+          profitColor: Colors.green,
+          cost: '₹3,83,380',
+          earnings: '₹4,57,684',
+          earningsProgress: 1.0,
+          earningsColor: Colors.teal,
+        ),
+
+        Container(
+          decoration: BoxDecoration(
+            color: const Color(0xFFFFFAE5),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Icon(
+                    Icons.notifications_active,
+                    color: Colors.red[400],
+                    size: 24,
+                  ),
+                  const SizedBox(width: 12),
+                  RichText(
+                    text: TextSpan(
+                      style: const TextStyle(
+                        fontSize: 15,
+                        color: Colors.grey,
+                      ),
+                      children: [
+                        const TextSpan(
+                          text: 'SOS call made at ',
+                        ),
+                        TextSpan(
+                          text: '12:53 AM',
+                          style: TextStyle(
+                            color: Colors.red[400],
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        // const TextSpan(
+                        //   text: ' by driver',
+                        // ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              const Icon(
+                Icons.arrow_forward,
+                color: Colors.black54,
+              ),
+            ],
+          ),
+        ),
+
+        // Vehicle Card 2 - RUNNING
+        buildVehicleCard(
+          vehicleNumber: 'UP 12 AK 3248',
+          driverName: 'Akash Sharma',
+          status: 'RUNNING',
+          statusColor: Colors.green[100]!,
+          statusTextColor: Colors.green[800]!,
+          profit: '₹74,304',
+          profitColor: Colors.red,
+          cost: '₹3,83,380',
+          earnings: '₹4,57,684',
+          earningsProgress: 0.3,
+          earningsColor: Colors.red[400]!,
+        ),
+
+        // Vehicle Card 3 - INACTIVE
+        buildInactiveVehicleCard(
+          vehicleNumber: 'UP 12 AK 3248',
+          message: 'No Driver Assigned',
+        ),
+      ],
     );
   }
 
-  Widget _buildFilterTab(String text, bool isActive) {
+  Widget buildFilterTab(String text, bool isActive) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
       decoration: BoxDecoration(
@@ -177,7 +151,7 @@ class VehiclesOverviewScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildVehicleCard({
+  Widget buildVehicleCard({
     required String vehicleNumber,
     required String driverName,
     required String status,
@@ -208,7 +182,6 @@ class VehiclesOverviewScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Vehicle number and status
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -373,7 +346,7 @@ class VehiclesOverviewScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildInactiveVehicleCard({
+  Widget buildInactiveVehicleCard({
     required String vehicleNumber,
     required String message,
   }) {

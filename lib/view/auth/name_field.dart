@@ -1,9 +1,10 @@
 import 'package:fleetwise/constants/colors.dart';
+import 'package:fleetwise/view/auth/identity_adress.dart';
 import 'package:fleetwise/widgets/custom_textform.dart';
 import 'package:flutter/material.dart';
 
-class IdentityVerificationScreen extends StatelessWidget {
-  const IdentityVerificationScreen({super.key});
+class NameEnterField extends StatelessWidget {
+  const NameEnterField({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,6 @@ class IdentityVerificationScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Header with Skip button
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Row(
@@ -25,7 +25,7 @@ class IdentityVerificationScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          'Identity & Address proof of owner',
+                          'What Shall We Call You?',
                           style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
@@ -33,7 +33,7 @@ class IdentityVerificationScreen extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'Raman Ji, get started with document upload!',
+                          'Enter Full Name As On Your Aadhar Card',
                           style: TextStyle(
                             fontSize: 13,
                             color: Colors.grey[600],
@@ -88,23 +88,23 @@ class IdentityVerificationScreen extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 20),
-              CustomTextFormField(
-                controller: namecontroller,
-                labelText: '',
-                fill: true,
-                fillcolor: FleetWiseColors.fillwhite,
-              ),
+              // const SizedBox(height: 20),
+              // CustomTextFormField(
+              //   controller: namecontroller,
+              //   labelText: '',
+              //   fill: true,
+              //   fillcolor: FleetWiseColors.fillwhite,
+              // ),
 
-              const SizedBox(height: 20),
-              CustomTextFormField(
-                controller: namecontroller,
-                labelText: '',
-                fill: true,
-                fillcolor: FleetWiseColors.fillwhite,
-              ),
+              // const SizedBox(height: 20),
+              // CustomTextFormField(
+              //   controller: namecontroller,
+              //   labelText: '',
+              //   fill: true,
+              //   fillcolor: FleetWiseColors.fillwhite,
+              // ),
 
-              const SizedBox(height: 40),
+              // const SizedBox(height: 40),
 
               // Submit Button
               Padding(
@@ -114,7 +114,9 @@ class IdentityVerificationScreen extends StatelessWidget {
                   height: 55,
                   child: ElevatedButton(
                     onPressed: () {
-                      // Handle submit
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => IdentityVerificationScreen(),
+                      ));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF123456),

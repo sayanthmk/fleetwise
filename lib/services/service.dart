@@ -6,7 +6,6 @@ class ApiService {
   static const String rootUrl =
       'https://avaronn-backend-development-server.pemy8f8ay9m4p.ap-south-1.cs.amazonlightsail.com/test';
 
-  // 1. Send OTP
   static Future<http.Response> sendOtp(
       String countryCode, String phoneNumber) async {
     final url = Uri.parse('$rootUrl/sendOtp');
@@ -21,7 +20,6 @@ class ApiService {
     return response;
   }
 
-  // 2. Verify OTP
   static Future<http.Response> verifyOtp({
     required String countryCode,
     required String phoneNumber,
@@ -46,7 +44,6 @@ class ApiService {
     return response;
   }
 
-  // 3. Refresh Token
   static Future<http.Response> refreshToken(String refreshToken) async {
     final url = Uri.parse('$rootUrl/refreshAccessToken');
     final response = await http.get(
@@ -59,34 +56,29 @@ class ApiService {
     return response;
   }
 
-  // Authenticated headers
   static Map<String, String> _authHeaders(String accessToken) => {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer $accessToken',
       };
 
-  // 4. Get Today PnL
   static Future<http.Response> getTodayPnL(String accessToken) async {
     final url = Uri.parse('$rootUrl/getTodayPorterPnL');
     final response = await http.get(url, headers: _authHeaders(accessToken));
     return response;
   }
 
-  // 5. Get Yesterday PnL
   static Future<http.Response> getYesterdayPnL(String accessToken) async {
     final url = Uri.parse('$rootUrl/getYesterdayPorterPnL');
     final response = await http.get(url, headers: _authHeaders(accessToken));
     return response;
   }
 
-  // 6. Get Monthly PnL
   static Future<http.Response> getMonthlyPnL(String accessToken) async {
     final url = Uri.parse('$rootUrl/getMonthlyPorterPnL');
     final response = await http.get(url, headers: _authHeaders(accessToken));
     return response;
   }
 
-  // 7. Upload File
   static Future<http.Response> uploadFile({
     required String accessToken,
     required String attribute,
@@ -102,7 +94,6 @@ class ApiService {
     return http.Response.fromStream(streamedResponse);
   }
 
-  // 8. Update Name
   static Future<http.Response> updateName({
     required String accessToken,
     required String name,

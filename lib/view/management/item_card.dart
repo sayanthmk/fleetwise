@@ -7,6 +7,7 @@ class ItemCard extends StatelessWidget {
   final String? predictedAmount;
   final bool? predict;
   final IconData icon;
+  final Color leadcolor;
   const ItemCard({
     super.key,
     required this.title,
@@ -15,6 +16,7 @@ class ItemCard extends StatelessWidget {
     this.predictedAmount,
     this.predict,
     required this.icon,
+    required this.leadcolor,
   });
 
   @override
@@ -31,14 +33,12 @@ class ItemCard extends StatelessWidget {
           Container(
             width: 48,
             height: 48,
-            decoration: const BoxDecoration(
-              color: Colors.blue,
+            decoration: BoxDecoration(
+              color: leadcolor,
               shape: BoxShape.circle,
             ),
             child: Center(
-              // child: icon,
               child: Icon(
-                // Icons.monetization_on_outlined,
                 icon,
                 color: Colors.white,
                 size: 24,
@@ -52,9 +52,9 @@ class ItemCard extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w500,
                     color: Colors.black,
                   ),
                 ),
@@ -76,7 +76,7 @@ class ItemCard extends StatelessWidget {
                 '₹$amount',
                 style: const TextStyle(
                   fontSize: 18,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w500,
                   color: Colors.black,
                 ),
               ),
